@@ -1,0 +1,40 @@
+CREATE DATABASE IF NOT EXISTS lost_found_db DEFAULT CHARACTER SET utf8mb4;
+USE lost_found_db;
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  role ENUM('user', 'admin') NOT NULL DEFAULT 'user',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS lost_items (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(100) NOT NULL,
+  category VARCHAR(50) NOT NULL,
+  description TEXT NOT NULL,
+  location VARCHAR(100) NOT NULL,
+  lost_date DATETIME NOT NULL,
+  contact VARCHAR(100) NOT NULL,
+  image_urls TEXT NULL,
+  status ENUM('open', 'closed') NOT NULL DEFAULT 'open',
+  user_id INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS found_items (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(100) NOT NULL,
+  category VARCHAR(50) NOT NULL,
+  description TEXT NOT NULL,
+  location VARCHAR(100) NOT NULL,
+  found_date DATETIME NOT NULL,
+  contact VARCHAR(100) NOT NULL,
+  image_urls TEXT NULL,
+  status ENUM('open', 'closed') NOT NULL DEFAULT 'open',
+  user_id INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);

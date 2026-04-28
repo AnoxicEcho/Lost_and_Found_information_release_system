@@ -1,0 +1,262 @@
+:root {
+  --page-bg-1: #f4f7ff;
+  --page-bg-2: #eef8f4;
+  --card-border: #dbe4f0;
+  --text-main: #1f2937;
+  --text-soft: #64748b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background:
+    radial-gradient(circle at 85% 15%, #d9f1ff 0%, transparent 34%),
+    linear-gradient(150deg, var(--page-bg-1), var(--page-bg-2));
+  color: var(--text-main);
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 28px rgba(2, 6, 23, 0.16);
+}
+
+.brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  background: linear-gradient(145deg, #34d399, #38bdf8);
+  color: #0f172a;
+}
+
+.brand-title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.brand-subtitle {
+  font-size: 12px;
+  color: #cbd5e1;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.main-wrap {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 18px;
+}
+
+.home-page {
+  display: grid;
+  gap: 14px;
+}
+
+.summary-grid {
+  margin-bottom: 2px;
+}
+
+.summary-card {
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+}
+
+.summary-card :is(.el-card__body) {
+  padding: 16px;
+}
+
+.summary-card-warning {
+  background: linear-gradient(180deg, #fff9ed, #fff);
+}
+
+.summary-card-success {
+  background: linear-gradient(180deg, #effcf5, #fff);
+}
+
+.summary-label {
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+.summary-value {
+  margin-top: 8px;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.panel,
+.table-panel,
+.form-panel {
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.tabs-panel {
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  padding: 12px;
+}
+
+.panel-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.query-form {
+  row-gap: 8px;
+}
+
+.submit-btn {
+  min-width: 150px;
+}
+
+.auth-page {
+  min-height: calc(100vh - 72px);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.auth-card {
+  width: min(430px, 100%);
+  border-radius: 14px;
+  border: 1px solid var(--card-border);
+}
+
+.auth-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  letter-spacing: 0;
+}
+
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.lf-table :is(.el-table__header-wrapper th.el-table__cell) {
+  background: #f6f9ff;
+  color: #334155;
+}
+
+.lf-table .el-table__row:hover > td.el-table__cell {
+  background: #f9fbff !important;
+}
+
+.text-muted {
+  color: #94a3b8;
+}
+
+.item-form .el-input__wrapper,
+.item-form .el-textarea__inner,
+.query-form .el-input__wrapper,
+.query-form .el-select__wrapper {
+  border-radius: 10px;
+}
+
+.item-form :deep(.el-upload--picture-card) {
+  border-radius: 10px;
+}
+
+.el-tabs__item {
+  font-weight: 600;
+}
+
+.tabs-panel > .el-tabs__header {
+  margin: 0 0 12px 0;
+  padding: 0;
+}
+
+.tabs-panel > .el-tabs__header .el-tabs__nav-wrap::after {
+  display: none;
+}
+
+.tabs-panel > .el-tabs__header .el-tabs__nav {
+  border: 1px solid #d8e3f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.tabs-panel > .el-tabs__header .el-tabs__item {
+  height: 44px;
+  line-height: 44px;
+  padding: 0 24px;
+  background: #f7fbff;
+  border-right: 1px solid #d8e3f0;
+}
+
+.tabs-panel > .el-tabs__header .el-tabs__item:last-child {
+  border-right: none;
+}
+
+.tabs-panel > .el-tabs__header .el-tabs__item.is-active {
+  background: #ffffff;
+  color: #1677ff;
+}
+
+.tabs-panel > .el-tabs__content {
+  padding: 0;
+}
+
+.el-image-viewer__wrapper {
+  z-index: 4000 !important;
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    padding: 10px 12px;
+  }
+
+  .brand-title {
+    font-size: 16px;
+  }
+
+  .brand-subtitle {
+    display: none;
+  }
+
+  .main-wrap {
+    padding: 12px;
+  }
+}
