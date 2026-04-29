@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="card">
+    <view class="tabs">
+      <view class="tab {{ mode === 'lost' ? 'active' : '' }}" data-mode="lost" bindtap="switchMode">发布失物</view>
+      <view class="tab {{ mode === 'found' ? 'active' : '' }}" data-mode="found" bindtap="switchMode">发布招领</view>
+    </view>
+
+    <input class="ipt" placeholder="标题" data-key="title" value="{{ form.title }}" bindinput="onInput" />
+    <input class="ipt" placeholder="类别" data-key="category" value="{{ form.category }}" bindinput="onInput" />
+    <input class="ipt" placeholder="地点" data-key="location" value="{{ form.location }}" bindinput="onInput" />
+    <input class="ipt" placeholder="联系方式" data-key="contact" value="{{ form.contact }}" bindinput="onInput" />
+    <textarea class="txt" placeholder="详细描述" data-key="description" value="{{ form.description }}" bindinput="onInput"></textarea>
+
+    <picker mode="date" value="{{ datePart }}" bindchange="onDateChange">
+      <view class="picker">{{ mode === 'lost' ? '遗失日期' : '拾获日期' }}：{{ datePart || '请选择日期' }}</view>
+    </picker>
+    <picker mode="time" value="{{ timePart }}" bindchange="onTimeChange">
+      <view class="picker">{{ mode === 'lost' ? '遗失时间' : '拾获时间' }}：{{ timePart || '请选择时间' }}</view>
+    </picker>
+
+    <view class="img-tools">
+      <button size="mini" bindtap="chooseImages">选择图片（最多5张）</button>
+    </view>
+    <scroll-view wx:if="{{ imageLocalPaths.length }}" scroll-x class="img-row">
+      <image wx:for="{{ imageLocalPaths }}" wx:key="*this" src="{{ item }}" mode="aspectFill" class="thumb"></image>
+    </scroll-view>
+
+    <button class="btn-primary" loading="{{ loading }}" bindtap="submit">提交发布</button>
+  </view>
+</view>

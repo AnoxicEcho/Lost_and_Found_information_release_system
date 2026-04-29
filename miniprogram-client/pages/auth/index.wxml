@@ -1,0 +1,9 @@
+<view class="container">
+  <view class="card">
+    <view class="title">{{ isLogin ? '用户登录' : '用户注册' }}</view>
+    <input class="ipt" placeholder="用户名" value="{{ form.username }}" data-key="username" bindinput="onInput" />
+    <input class="ipt" placeholder="密码" password value="{{ form.password }}" data-key="password" bindinput="onInput" />
+    <button class="btn-primary" loading="{{ loading }}" bindtap="submit">{{ isLogin ? '登录' : '注册' }}</button>
+    <view class="switch" bindtap="switchMode">{{ isLogin ? '没有账号？去注册' : '已有账号？去登录' }}</view>
+  </view>
+</view>

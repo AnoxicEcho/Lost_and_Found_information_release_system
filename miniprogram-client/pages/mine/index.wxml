@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="card" wx:if="{{ user }}">
+    <view class="name">{{ user.username }}</view>
+    <view class="meta">角色：{{ user.role }}</view>
+    <button class="btn-primary" bindtap="goAuth">切换账号</button>
+    <button bindtap="logout">退出登录</button>
+  </view>
+
+  <view class="card" wx:else>
+    <view class="name">未登录</view>
+    <button class="btn-primary" bindtap="goAuth">去登录</button>
+  </view>
+</view>

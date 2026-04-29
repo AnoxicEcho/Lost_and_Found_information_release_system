@@ -4,7 +4,17 @@ function normalizeImageUrls(imageUrls) {
   if (!Array.isArray(imageUrls)) {
     return [];
   }
-  return imageUrls.filter((url) => typeof url === "string" && url.trim() !== "").slice(0, 5);
+  return imageUrls
+    .filter((url) => typeof url === "string" && url.trim() !== "")
+    .map((url) => {
+      const value = url.trim();
+      const idx = value.indexOf("/uploads/");
+      if (idx >= 0) {
+        return value.slice(idx);
+      }
+      return value;
+    })
+    .slice(0, 5);
 }
 
 function parseImageUrls(raw) {

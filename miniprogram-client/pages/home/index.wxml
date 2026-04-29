@@ -1,0 +1,40 @@
+<view class="container">
+  <view class="card">
+    <view class="tabs">
+      <view class="tab {{ mode === 'lost' ? 'active' : '' }}" data-mode="lost" bindtap="switchMode">失物信息</view>
+      <view class="tab {{ mode === 'found' ? 'active' : '' }}" data-mode="found" bindtap="switchMode">招领信息</view>
+    </view>
+    <input class="ipt" placeholder="关键词（标题/描述）" value="{{ filters.keyword }}" data-key="keyword" bindinput="onFilterInput" />
+    <input class="ipt" placeholder="类别" value="{{ filters.category }}" data-key="category" bindinput="onFilterInput" />
+    <button bindtap="loadList">查询</button>
+  </view>
+
+  <block wx:for="{{ list }}" wx:key="id">
+    <view class="card item">
+      <view class="item-head">
+        <text class="title">{{ item.title }}</text>
+        <text class="status {{ item.status === 'closed' ? 'closed' : 'open' }}">{{ item.statusLabel }}</text>
+      </view>
+      <view class="line">类别：{{ item.category }}</view>
+      <view class="line">地点：{{ item.location }}</view>
+      <view class="line">{{ mode === 'lost' ? '遗失时间' : '拾获时间' }}：{{ mode === 'lost' ? item.lost_date : item.found_date }}</view>
+      <view class="line">联系方式：{{ item.contact }}</view>
+      <view class="line">发布用户：{{ item.username }}</view>
+      <scroll-view wx:if="{{ item.imageUrls && item.imageUrls.length }}" scroll-x class="img-row">
+        <image
+          wx:for="{{ item.imageUrls }}"
+          wx:key="*this"
+          src="{{ item }}"
+          mode="aspectFill"
+          class="thumb"
+          bindtap="previewImage"
+          data-url="{{ item }}"
+          data-list="{{ item.imageUrls }}"
+        />
+      </scroll-view>
+      <picker wx:if="{{ isAdmin }}" mode="selector" range="{{ statusOptions }}" range-key="label" value="{{ item.status === 'closed' ? 1 : 0 }}" data-id="{{ item.id }}" bindchange="onStatusChange">
+        <view class="admin-btn">管理员修改状态</view>
+      </picker>
+    </view>
+  </block>
+</view>
